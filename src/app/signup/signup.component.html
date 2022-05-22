@@ -1,0 +1,74 @@
+<section id="particle" class="bg-dark">
+    <div class="sign">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6 mx-auto my-5">
+                    <form [formGroup]='signupForm' (ngSubmit)='formData(signupForm)'>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input class="form-control my-3" placeholder="Enter Your FristName"
+                                    formControlName='first_name'
+                                    [ngClass]="signupForm.controls.first_name.status=='VALID'?'is-valid':'is-invalid'">
+                                <div *ngIf="signupForm.get('first_name').errors && signupForm.get('first_name').touched"
+                                    class=" alert border border-danger">
+                                    <p *ngIf="signupForm.get('first_name').errors.pattern">PLEASE ENTER VALID NAME</p>
+                                    <p *ngIf="signupForm.get('first_name').errors.required">PLEASE ENTER VALID NAME is Not Requered</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control my-3" placeholder="Enter Your LastName"
+                                    formControlName='last_name'
+                                    [ngClass]="signupForm.controls.last_name.status=='VALID'?'is-valid':'is-invalid'">
+                                <div *ngIf="signupForm.controls.last_name.errors && signupForm.controls.last_name.touched"
+                                    class=" alert border border-danger">
+                                    <p *ngIf="signupForm.get('last_name').errors.pattern">PLEASE ENTER VALID NAME</p>
+                                    <p *ngIf="signupForm.get('last_name').errors.required">PLEASE ENTER VALID NAME is
+                                        Not Requered</p>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="form-control my-3" placeholder="Enter Your age" formControlName='age'>
+                        <div *ngIf="signupForm.controls.age.errors && signupForm.controls.age.touched"
+                            class=" alert border border-danger">
+                            PLEASE ENTER VALID age
+                        </div>
+
+                        <input class="form-control my-3" placeholder="Enter Your Email" formControlName='email'
+                            [ngClass]="signupForm.controls.email.status=='VALID'?'is-valid':'is-invalid'">
+                        <div *ngIf="signupForm.controls.email.errors && signupForm.controls.email.touched"
+                            class=" alert border border-danger">
+                            PLEASE ENTER VALID email
+                        </div>
+
+                        <input class="form-control my-3" placeholder="Enter Your Password" type="password"
+                            formControlName='password'>
+                        <div *ngIf="signupForm.controls.password.errors && signupForm.controls.password.touched"
+                            class=" alert border border-danger">
+                            PLEASE ENTER VALID password
+                        </div>
+                        <button class="btn btn-info btn-block" [disabled]='signupForm.invalid'>
+                            <span *ngIf='checked;else wating'>Sign Up</span>
+                            <ng-template #wating>
+                                <span>
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </span>
+                            </ng-template>
+                        </button>
+                        <div *ngIf='checkRespons'>
+                            <div class="alert border border-success" *ngIf="answer=='success';else wrong">
+                                {{answer}}
+                            </div>
+                            <ng-template #wrong>
+                                <div class="alert border border-danger mt-2">
+                                    {{answer}}
+                                </div>
+                            </ng-template>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

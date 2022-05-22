@@ -1,0 +1,54 @@
+<section id="particle" class=" bg-dark">
+    <div class="sign">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6 mx-auto my-5">
+                    <form [formGroup]='signinForm' (ngSubmit)='formData(signinForm)'>
+                        <input class="form-control my-3" placeholder="Enter Your Email" formControlName='email'
+                        [ngClass]="signinForm.controls.email.status=='VALID'?'is-valid':'is-invalid'">
+                        <div *ngIf="signinForm.controls.email.errors && signinForm.controls.email.touched" class=" alert border border-danger" >
+                            PLEASE ENTER VALID email
+                          </div>
+                        
+
+                       
+                          <input class="form-control my-3" placeholder="Enter Your Password" type="password"  formControlName='password'>
+                          <div *ngIf="signinForm.controls.password.errors && signinForm.controls.password.touched" class=" alert border border-danger">
+                              PLEASE ENTER VALID password
+                        
+                            </div>
+                       
+                        <button class="btn btn-info btn-block" [disabled]='signinForm.invalid'>
+
+                            <span *ngIf='checked;else wating'>Sign in</span>
+                            <ng-template #wating>
+                                <span>
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </span>
+
+
+                            </ng-template>
+                           
+                        </button>
+
+                        <div *ngIf='checkRespons'>
+                            <div class="alert border border-success" *ngIf="answer=='success';else wrong">
+                                {{answer}}
+                            </div>
+                            <ng-template #wrong>
+                             <div class="alert border border-danger mt-2">
+                                 {{answer}}
+                             </div>
+                            </ng-template>
+                         </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
